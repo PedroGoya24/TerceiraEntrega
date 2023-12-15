@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+ 
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+ 
+	<title>Cadastrar novo Cliente</title>
+</head>
+ 
+<body>
+	<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Cliente</a>
+		</div>
+	</nav>
+ 
+	<main class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>Cadastrar novo Cliente</h1>
+			</div>
+		</div>
+ 
+		<div class="row">
+			<div class="col-sm-12">
+				<form method="POST" th:object="${client}" enctype="multipart/form-data">
+					<div class="mb-3">
+						<label for="nome" class="form-label">Nome: </label>
+						<input type="text" class="form-control" id="nameUser" th:field="*{nameUser}">
+					</div>
+					<div class="mb-3">
+						<label for="nome" class="form-label">CPF: </label>
+						<input type="text" class="form-control" id="cpfUser" th:field="*{cpfUser}">
+					</div>
+					<div class="mb-3">
+						<label for="nome" class="form-label">Telefone: </label>
+						<input type="text" class="form-control" id="telephoneUser" th:field="*{telephoneUser}">
+					</div>
+					<div class="mb-3">
+						<label for="nome" class="form-label">Email: </label>
+						<input type="text" class="form-control" id="telephoneUser" th:field="*{emailUser}">
+					</div>
+					
+					<div class="mb-3">
+						<label for="login" class="form-label">Login</label>
+						<input type="text" class="form-control" id="login" th:field="*{Login}">
+					</div>
+					<!-- TEM QUE CRIAR A CONFIRMAÇÃO DE SENHA-->
+					<!-- -->
+					<div class="mb-3">
+						<label for="password" class="form-label">Senha</label>
+						<input type="password" class="form-control" id="password" th:field="*{Password}">
+					</div>
+					
+					<div class="mb-3">
+						<label for="nome" class="form-label">Nível de acesso: </label>						
+						
+					<select id="accesLevel" th:field="*{accesLevel}">						
+    					<option 
+    						th:each="accesLevel : ${T(com.adois.util.accesLevel).CLIENTE}"
+                    		th:text="${accesLevel}"
+                    		th:value="${accesLevel}">            				
+    					</option>
+					</select>
+					
+					</div>					
+					<br>
+					<button type="submit" class="btn btn-primary">Salvar</button>
+				</form>
+			</div>
+		</div>
+	</main>
+ 
+ 
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+		crossorigin="anonymous"></script>
+</body>
+ 
+</html>

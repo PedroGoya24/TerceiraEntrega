@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+ 
+  <title>Editar Pacote</title>
+</head>
+<body>
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Pacotes</a>
+    </div>
+  </nav>
+ 
+  <main class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>Editar Pacote</h1>
+      </div>
+    </div>
+ 
+    <div class="row">
+      <div class="col-sm-12">
+        <form method="POST" th:object="${package}" enctype="multipart/form-data">
+			<input type="hidden" th:field="*{idPac}">
+         		
+			<div class="mb-3">
+						<label for="promo" class="form-label">Está em promoção?</label>
+					<select th:field="*{promo}">
+						<option hidden value="">Selecione uma opção</option>						
+    					<option th:value="1">Sim</option>
+    					<option th:value="0">Não</option>
+					</select>
+						
+					</div>
+					<div class="mb-3">
+						<label for="typePac" class="form-label">Tipo do Pacote</label>
+						
+						<select id="typePac" th:field="*{typePac}">
+						<option hidden value="">Selecione uma opção</option>
+    					<option 
+    						th:each="typePac : ${T(com.adois.util.typePac).values()}"
+                    		th:text="${typePac}"
+                    		th:value="${typePac}">
+            				
+    					</option>
+					</select>
+						
+					</div>
+										
+ 					<div class="mb-3">
+						<label for="pricePac" class="form-label">Preço do pacote</label>											
+						<input type="number" class="form-control" id="pricePac" th:field="*{pricePac}">
+					</div>
+
+					<label for="user" class="form-label">Id do destino: </label>
+					
+					<label for="user" class="form-label" th:text="${id}"></label>																																																																
+					
+					<select name="idDest" class="form-select" id="enterprise">
+						<option hidden value="">Após preencher tudo, clique em Salvar</option>
+            			<option 
+            				th:each="destiny : ${destinys}" 
+            				th:value="${destiny.idDest}" 
+            				>
+            			</option>
+        			</select>
+   		  		<br>
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+      </div>
+    </div>
+  </main>
+ 
+ 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</body>
+</html>
